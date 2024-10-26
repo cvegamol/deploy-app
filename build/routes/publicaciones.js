@@ -1,0 +1,80 @@
+"use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const publicacionesService_1 = require("./../services/publicacionesService");
+const express_1 = __importDefault(require("express")); // Importa el módulo express y sus tipos de solicitud y respuesta
+const router = express_1.default.Router(); // Crea un enrutador de express
+// Ruta para obtener todas las publicaciones
+router.get('/publicaciones', publicacionesService_1.publicacionesMethods.getPublications);
+// Ruta para obtener una publicación por id
+router.get('/publicaciones/getPublicationById/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const publication = yield publicacionesService_1.publicacionesMethods.getPublicationById(Number(req.params.id)); // Obtiene la publicación por id
+        if (publication) {
+            res.json(publication); // Devuelve la publicación si se encuentra
+        }
+        else {
+            res.status(404).json({ message: 'publicacion no encontrada' }); // Devuelve un error 404 si la publicación no se encuentra
+        }
+    }
+    catch (error) {
+        res.status(500).json({ error: error.message }); // Devuelve un error 500 si hay algún error en el servidor
+    }
+}));
+// Ruta para obtener una publicación por FK_Periodicidad
+router.get('/publicaciones/getPublicationByFkPeriodicity/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const publication = yield publicacionesService_1.publicacionesMethods.getPublicationByFkPeriodicity(Number(req.params.id)); // Obtiene la publicación por FK_Periodicidad
+        if (publication) {
+            res.json(publication); // Devuelve la publicación si se encuentra
+        }
+        else {
+            res.status(404).json({ message: 'publicacion no encontrada' }); // Devuelve un error 404 si la publicación no se encuentra
+        }
+    }
+    catch (error) {
+        res.status(500).json({ error: error.message }); // Devuelve un error 500 si hay algún error en el servidor
+    }
+}));
+// Ruta para obtener una publicación por FK_Operacion   
+router.get('/publicaciones/getPublicationByFkOperation/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const publication = yield publicacionesService_1.publicacionesMethods.getPublicationByFkOperation(Number(req.params.id)); // Obtiene la publicación por FK_Operacion
+        if (publication) {
+            res.json(publication); // Devuelve la publicación si se encuentra
+        }
+        else {
+            res.status(404).json({ message: 'publicacion no encontrada' }); // Devuelve un error 404 si la publicación no se encuentra
+        }
+    }
+    catch (error) {
+        res.status(500).json({ error: error.message }); // Devuelve un error 500 si hay algún error en el servidor
+    }
+}));
+// Ruta para obtener una publicación por FK_PubFechaAct
+router.get('/publicaciones/getPublicationByFkPubFechaAct/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const publication = yield publicacionesService_1.publicacionesMethods.getPublicationByFkPubDateAct(Number(req.params.id)); // Obtiene la publicación por FK_PubFechaAct
+        if (publication) {
+            res.json(publication); // Devuelve la publicación si se encuentra
+        }
+        else {
+            res.status(404).json({ message: 'publicacion no encontrada' }); // Devuelve un error 404 si la publicación no se encuentra
+        }
+    }
+    catch (error) {
+        res.status(500).json({ error: error.message }); // Devuelve un error 500 si hay algún error en el servidor
+    }
+}));
+exports.default = router; // Exporta el enrutador de publicaciones
