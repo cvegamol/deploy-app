@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const operacion_1 = __importDefault(require("./routes/operacion"));
+const operacion_1 = __importDefault(require("../src/routes/operacion"));
 
 const app = (0, express_1.default)();
 //middlewares que transforma la req.body en json
