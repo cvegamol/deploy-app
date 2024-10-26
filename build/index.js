@@ -1,4 +1,5 @@
 "use strict";
+import operacion from './routes/operacion';
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -12,6 +13,7 @@ const PORT = 3000;
 app.get('/ping', (req, res) => {
     res.send('Hello World');
 });
+app.use( operacion);
 app.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`);
 });
