@@ -4,7 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const usuario_1 = __importDefault(require("./routes/usuario"));
 const clasificaciones_1 = __importDefault(require("./routes/clasificaciones"));
 const escalas_1 = __importDefault(require("./routes/escalas"));
 const operacion_clasificaciones_1 = __importDefault(require("./routes/operacion_clasificaciones"));
@@ -30,7 +29,6 @@ const PORT = 3000;
 app.get('/ping', (req, res) => {
     res.send('Hello World');
 });
-app.use(usuario_1.default);
 app.use(clasificaciones_1.default);
 app.use(escalas_1.default);
 app.use(operacion_clasificaciones_1.default);

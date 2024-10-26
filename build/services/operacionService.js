@@ -40,7 +40,7 @@ const getOperationById = (id) => __awaiter(void 0, void 0, void 0, function* () 
     try {
         const connection = yield (0, database_1.default)();
         const result = yield connection.query('SELECT * FROM operaciones WHERE id = ' + id);
-        if (result.length === 0) {
+        if (Array.isArray(result) && result.every(() => false)) {
             // URL de la API del INE para obtener la serie por COD
             const apiUrl = `https://servicios.ine.es/wstempus/js/ES/OPERACION/${id}`;
             // Realizar llamada GET a la API del INE

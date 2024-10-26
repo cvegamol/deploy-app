@@ -40,10 +40,8 @@ const getScaleById = (id) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const connection = yield (0, database_1.default)();
         const result = yield connection.query('SELECT * FROM escalas WHERE id = ' + id);
-        if (result.length === 0) {
-            // URL de la API del INE para obtener la serie por COD
+        if (Array.isArray(result) && result.every(() => false)) {
             const apiUrl = `https://servicios.ine.es/wstempus/js/ES/Escala/${id}`;
-            // Realizar llamada GET a la API del INE
             const response = yield axios_1.default.get(apiUrl);
             const dataFromAPI = response.data;
             console.log("Datos de la API:", dataFromAPI);

@@ -26,18 +26,11 @@ const getScales = async (req:any, res:any) => {
 const getScaleById = async (id: number): Promise<any> => {
     try {
         const connection = await getConnection();
-        const result = await connection.query('SELECT * FROM escalas WHERE id = ' + id);
-        
-        if (result.length === 0) {
-        
-            
-            // URL de la API del INE para obtener la serie por COD
-            const apiUrl = `https://servicios.ine.es/wstempus/js/ES/Escala/${id}`;
-            
-            // Realizar llamada GET a la API del INE
-            const response = await axios.get(apiUrl);
+        const result = await connection.query('SELECT * FROM escalas WHERE id = ' + id) as any[];
 
-          
+        if (Array.isArray(result) && result.every(() => false)) {
+            const apiUrl = `https://servicios.ine.es/wstempus/js/ES/Escala/${id}`;
+            const response = await axios.get(apiUrl);
             const dataFromAPI = response.data;
             console.log("Datos de la API:", dataFromAPI);
 
@@ -48,7 +41,7 @@ const getScaleById = async (id: number): Promise<any> => {
     } catch (error: any) {
         throw { message: 'Error al obtener la escala por id', status: 500 };
     }
-}
+};
 
 
 export const escalasMethods= { getScales, getScaleById }; // Exporta los métodos de escalas

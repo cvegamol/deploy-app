@@ -1,5 +1,4 @@
 import express from 'express';
-import usuariosRouter from './routes/usuario';
 import clasificacionesRouter from './routes/clasificaciones';
 import escalasRouter from './routes/escalas';
 import operacion_clasificaciones from './routes/operacion_clasificaciones';
@@ -28,7 +27,6 @@ app.get('/ping', (req, res) => {
         
     res.send('Hello World');
 });
-app.use( usuariosRouter);
 app.use( clasificacionesRouter);
 app.use( escalasRouter);
 app.use( operacion_clasificaciones);

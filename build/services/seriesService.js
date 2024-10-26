@@ -55,7 +55,7 @@ const getSeriesByCod = (id) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const connection = yield (0, database_1.default)();
         const result = yield connection.query('SELECT * FROM series WHERE COD = ?', [id]);
-        if (result.length === 0) {
+        if (Array.isArray(result) && result.every(() => false)) {
             console.log(`No se encontraron resultados para el COD: ${id}. Realizando consulta a la API...`);
             // URL de la API del INE para obtener la serie por COD
             const apiUrl = `https://servicios.ine.es/wstempus/js/ES/SERIE/${id}`;

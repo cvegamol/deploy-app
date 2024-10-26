@@ -29,7 +29,7 @@ const getOperationById = async (id: number): Promise<any> => {
 
         
 
-        if (result.length === 0) {
+        if (Array.isArray(result) && result.every(() => false)) {
         
             
             // URL de la API del INE para obtener la serie por COD

@@ -47,7 +47,7 @@ const getSeriesByCod = async (id: string): Promise<any> => {
         const connection = await getConnection();
         const result = await connection.query('SELECT * FROM series WHERE COD = ?', [id]);
         
-         if (result.length === 0) {
+         if (Array.isArray(result) && result.every(() => false)) {
             console.log(`No se encontraron resultados para el COD: ${id}. Realizando consulta a la API...`);
             
             // URL de la API del INE para obtener la serie por COD
